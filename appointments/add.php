@@ -1,11 +1,11 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get clients and pets for dropdowns
+
 $clients = $mysqli->query("SELECT id, CONCAT(fname, ' ', lname) as name FROM client_info ORDER BY lname, fname");
 $pets = $mysqli->query("SELECT id, pet_name FROM pet_info ORDER BY pet_name");
 
-// Handle Create
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $client_id = $_POST['client_id'];
   $pet_id = $_POST['pet_id'];
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li>
-          <a href="../vaccination.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -83,12 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
           <i class='bx bx-user'></i>
           <span>Admin</span>
+          <a href="../logout.php" class="btn-logout" title="Logout">
+            <i class='bx bx-log-out'></i>
+          </a>
         </div>
       </header>
 
@@ -97,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <h1>Schedule New Checkup</h1>
         </div>
 
-        <!-- Checkup Form -->
+
         <div class="form-container">
           <form method="POST" class="crud-form two-columns">
             <div class="form-column">

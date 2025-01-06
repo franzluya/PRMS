@@ -1,14 +1,20 @@
 <?php
 require_once '../config/database.php';
-
-// Handle Delete
+require_once '../config/auth.php';
+//  Delete
 if (isset($_GET['delete'])) {
   $id = $_GET['delete'];
+
+  $mysqli->query("DELETE FROM vaccination_info WHERE petid = $id");
+  $mysqli->query("DELETE FROM checkup_test WHERE petid = $id");
+
+  
   $mysqli->query("DELETE FROM pet_info WHERE id = $id");
   header("Location: index.php");
+  exit();
 }
 
-// Handle Search
+
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $where = '';
 if ($search) {
@@ -32,7 +38,7 @@ if ($search) {
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -63,11 +69,11 @@ if ($search) {
         <li>
           <a href="../appointments/index.php">
             <i class='bx bx-calendar'></i>
-            <span>Appointments</span>
+            <span>Checkup Appointments</span>
           </a>
         </li>
         <li>
-          <a href="../vaccination.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -75,12 +81,14 @@ if ($search) {
       </ul>
     </nav>
 
-    <!-- Page Content -->
     <div id="content">
       <header>
         <div class="user-menu">
           <i class='bx bx-user'></i>
           <span>Admin</span>
+          <a href="../logout.php" class="btn-logout" title="Logout">
+            <i class='bx bx-log-out'></i>
+          </a>
         </div>
       </header>
 
@@ -93,7 +101,7 @@ if ($search) {
           </a>
         </div>
 
-        <!-- Search Form -->
+
         <div class="search-container">
           <form method="GET" class="search-form">
             <input type="text" name="search" placeholder="Search pets..." value="<?php echo htmlspecialchars($search); ?>">
@@ -110,7 +118,6 @@ if ($search) {
           </form>
         </div>
 
-        <!-- Pets List -->
         <div class="table-container">
           <table>
             <thead>
@@ -138,9 +145,9 @@ if ($search) {
                     <td><?php echo $row['age']; ?></td>
                     <td><?php echo $row['weight']; ?></td>
                     <td class="actions">
-                      <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn-edit">
+                      <a href="update.php?id=<?php echo $row['id']; ?>" class="btn-edit">
                         <i class='bx bx-edit'></i>
-                        <span>Edit</span>
+                        <span>Update</span>
                       </a>
                       <a href="?delete=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure?')">
                         <i class='bx bx-trash'></i>

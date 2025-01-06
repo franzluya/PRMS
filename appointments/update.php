@@ -1,7 +1,8 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get appointment for editing
+
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 $result = $mysqli->query("SELECT * FROM checkup_test WHERE id = $id");
 $appointment = $result->fetch_assoc();
@@ -11,11 +12,11 @@ if (!$appointment) {
   exit();
 }
 
-// Get clients and pets for dropdowns
+
 $clients = $mysqli->query("SELECT id, CONCAT(fname, ' ', lname) as name FROM client_info ORDER BY lname, fname");
 $pets = $mysqli->query("SELECT id, pet_name FROM pet_info ORDER BY pet_name");
 
-// Handle Update
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $client_id = $_POST['client_id'];
   $pet_id = $_POST['pet_id'];
@@ -40,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   exit();
 }
 
-// Format date and time for form
+
 $date = date('Y-m-d', strtotime($appointment['appointment_date']));
 $time = date('H:i', strtotime($appointment['appointment_date']));
 ?>
@@ -51,14 +52,14 @@ $time = date('H:i', strtotime($appointment['appointment_date']));
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Checkup - Animals at Home</title>
+  <title>Update Checkup - Animals at Home</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -93,7 +94,7 @@ $time = date('H:i', strtotime($appointment['appointment_date']));
           </a>
         </li>
         <li>
-          <a href="../vaccination.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -101,21 +102,24 @@ $time = date('H:i', strtotime($appointment['appointment_date']));
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
           <i class='bx bx-user'></i>
           <span>Admin</span>
+          <a href="../logout.php" class="btn-logout" title="Logout">
+            <i class='bx bx-log-out'></i>
+          </a>
         </div>
       </header>
 
       <main>
         <div class="content-header">
-          <h1>Edit Checkup Details</h1>
+          <h1>Update Checkup</h1>
         </div>
 
-        <!-- Checkup Form -->
+
         <div class="form-container">
           <form method="POST" class="crud-form two-columns">
             <div class="form-column">

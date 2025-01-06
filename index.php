@@ -1,3 +1,6 @@
+<?php
+require_once 'config/auth.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,7 @@
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="./images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -42,7 +45,7 @@
         <li>
           <a href="./appointments/index.php">
             <i class='bx bx-calendar'></i>
-            <span>Appointments</span>
+            <span>Checkup Appointments</span>
           </a>
         </li>
         <li>
@@ -54,78 +57,54 @@
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
           <i class='bx bx-user'></i>
-          <span>Admin</span>
+          <span><?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
+          <a href="logout.php" class="btn-logout" title="Logout">
+            <i class='bx bx-log-out'></i>Logout
+          </a>
         </div>
       </header>
 
       <main>
         <div class="welcome-section">
+        <img src="./images/aah-logo.jpg" alt="Clinic Logo" width="200px">
           <h1>Animals at Home</h1>
           <h2>Veterinary Clinic & Supplies</h2>
           <div class="clinic-details">
             <div>
               <i class='bx bx-map'></i>
-              <span>123 Main Street, Cityville, State 12345</span>
+              <span>Palanas, Lemery, Batangas</span>
             </div>
             <div>
               <i class='bx bx-phone'></i>
-              <span>(123) 456-7890</span>
+              <span>09528528585</span>
             </div>
-            <div>
-              <i class='bx bx-envelope'></i>
-              <span>info@animalsathome.com</span>
-            </div>
+
           </div>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <i class='bx bx-dog'></i>
-            <h3>Total Pets</h3>
-            <p class="stat-number">150</p>
-            <p class="stat-label">Registered Pets</p>
-          </div>
-          <div class="stat-card">
-            <i class='bx bx-group'></i>
-            <h3>Clients</h3>
-            <p class="stat-number">120</p>
-            <p class="stat-label">Active Clients</p>
-          </div>
-          <div class="stat-card">
-            <i class='bx bx-calendar'></i>
-            <h3>Appointments</h3>
-            <p class="stat-number">25</p>
-            <p class="stat-label">Scheduled Today</p>
-          </div>
-          <div class="stat-card">
-            <i class='bx bx-injection'></i>
-            <h3>Vaccinations</h3>
-            <p class="stat-number">300</p>
-            <p class="stat-label">This Month</p>
-          </div>
-        </div>
+
 
         <div class="quick-actions">
           <h2>Quick Actions</h2>
           <div class="action-buttons">
-            <a href="appointments.php?action=new" class="action-button">
+            <a href="./appointments/add.php" class="action-button">
               <i class='bx bx-calendar-plus'></i>
               <span>New Appointment</span>
             </a>
-            <a href="pets.php?action=register" class="action-button">
+            <a href="./pets/add.php" class="action-button">
               <i class='bx bx-plus-circle'></i>
               <span>Register Pet</span>
             </a>
-            <a href="clients/add.php" class="action-button">
+            <a href="./clients/add.php" class="action-button">
               <i class='bx bx-user-plus'></i>
               <span>Add Client</span>
             </a>
-            <a href="vaccination.php?action=new" class="action-button">
+            <a href="./vaccination/add.php" class="action-button">
               <i class='bx bx-injection'></i>
               <span>Record Vaccination</span>
             </a>

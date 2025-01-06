@@ -1,6 +1,6 @@
 <?php
 require_once '../config/database.php';
-
+require_once '../config/auth.php';
 // Handle Delete
 if (isset($_GET['delete'])) {
   $id = $_GET['delete'];
@@ -23,7 +23,6 @@ if ($search) {
         v.status LIKE '%$search%'";
 }
 
-// Get vaccinations with client and pet info
 $query = "SELECT v.*, 
     CONCAT(c.fname, ' ', c.lname) as client_name,
     p.pet_name, p.pet_type, p.pet_breed, p.age, p.weight, p.med_history
@@ -49,7 +48,7 @@ $vaccinations = $mysqli->query($query);
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -80,11 +79,11 @@ $vaccinations = $mysqli->query($query);
         <li>
           <a href="../appointments/index.php">
             <i class='bx bx-calendar'></i>
-            <span>Checkup</span>
+            <span>Checkup Appointments</span>
           </a>
         </li>
         <li class="active">
-          <a href="index.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -92,12 +91,15 @@ $vaccinations = $mysqli->query($query);
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
           <i class='bx bx-user'></i>
           <span>Admin</span>
+          <a href="../logout.php" class="btn-logout" title="Logout">
+            <i class='bx bx-log-out'></i>
+          </a>
         </div>
       </header>
 
@@ -110,19 +112,19 @@ $vaccinations = $mysqli->query($query);
           </a>
         </div>
 
-        <!-- Search Form -->
+
         <div class="search-container">
           <form method="GET" class="search-form">
-            <div class="search-group">
-              <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Search by client, pet, type, breed, or vaccine...">
-              <button type="submit">
-                <i class='bx bx-search'></i>
-              </button>
-            </div>
+
+            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Search by client, pet, type, breed, or vaccine...">
+            <button type="submit" class="btn-search">
+              <i class='bx bx-search'>Search</i>
+            </button>
+
           </form>
         </div>
 
-        <!-- Vaccinations Table -->
+
         <div class="table-container">
           <table class="data-table">
             <thead>
@@ -164,11 +166,13 @@ $vaccinations = $mysqli->query($query);
                       </span>
                     </td>
                     <td class="actions">
-                      <a href="edit.php?id=<?php echo $vaccination['id']; ?>" class="btn-edit" title="Edit">
+                      <a href="update.php?id=<?php echo $vaccination['id']; ?>" class="btn-edit" title="Update">
                         <i class='bx bx-edit'></i>
+                        <span>Update</span>
                       </a>
                       <a href="?delete=<?php echo $vaccination['id']; ?>" class="btn-delete" title="Delete" onclick="return confirm('Are you sure you want to delete this vaccination record?');">
                         <i class='bx bx-trash'></i>
+                        <span>Delete</span>
                       </a>
                     </td>
                   </tr>

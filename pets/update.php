@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get pet for editing
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 $result = $mysqli->query("SELECT * FROM pet_info WHERE id = $id");
 $pet = $result->fetch_assoc();
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Pet - Animals at Home</title>
+  <title>Update Pet - Animals at Home</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li>
-          <a href="../vaccination.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
@@ -107,59 +107,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       <main>
         <div class="content-header">
-          <h1>Edit Pet</h1>
+          <h1>Update Pet</h1>
         </div>
 
-        <!-- Pet Form -->
         <div class="form-container">
-          <form method="POST" class="crud-form">
-            <div class="form-group">
-              <label>Pet Name:</label>
-              <input type="text" name="pet_name" value="<?php echo $pet['pet_name']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Pet Type:</label>
-              <input type="text" name="pet_type" value="<?php echo $pet['pet_type']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Breed:</label>
-              <input type="text" name="pet_breed" value="<?php echo $pet['pet_breed']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Gender:</label>
-              <select name="pet_gender" required>
-                <option value="">Select Gender</option>
-                <option value="Male" <?php echo $pet['pet_gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
-                <option value="Female" <?php echo $pet['pet_gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Color:</label>
-              <input type="text" name="pet_color" value="<?php echo $pet['pet_color']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Date of Birth:</label>
-              <input type="date" name="dob" value="<?php echo date('Y-m-d', strtotime($pet['dob'])); ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Age:</label>
-              <input type="text" name="age" value="<?php echo $pet['age']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Weight:</label>
-              <input type="text" name="weight" value="<?php echo $pet['weight']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Medical History:</label>
-              <textarea name="med_history"><?php echo $pet['med_history']; ?></textarea>
+          <form method="POST">
+            <div class="crud-form">
+              <div class="form-group">
+                <label>Pet Name:</label>
+                <input type="text" name="pet_name" value="<?php echo $pet['pet_name']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Pet Type:</label>
+                <input type="text" name="pet_type" value="<?php echo $pet['pet_type']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Breed:</label>
+                <input type="text" name="pet_breed" value="<?php echo $pet['pet_breed']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Gender:</label>
+                <select name="pet_gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male" <?php echo $pet['pet_gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
+                  <option value="Female" <?php echo $pet['pet_gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Color:</label>
+                <input type="text" name="pet_color" value="<?php echo $pet['pet_color']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Date of Birth:</label>
+                <input type="date" name="dob" value="<?php echo date('Y-m-d', strtotime($pet['dob'])); ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Age:</label>
+                <input type="text" name="age" value="<?php echo $pet['age']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Weight:</label>
+                <input type="text" name="weight" value="<?php echo $pet['weight']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Medical History:</label>
+                <textarea name="med_history"><?php echo $pet['med_history']; ?></textarea>
+              </div>
             </div>
 
             <div class="form-actions">

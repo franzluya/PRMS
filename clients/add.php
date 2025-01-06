@@ -1,7 +1,6 @@
 <?php
 require_once '../config/database.php';
-
-// Handle Create
+require_once '../config/auth.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $lname = $_POST['lname'];
   $fname = $_POST['fname'];
@@ -33,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -56,15 +55,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <a href="../appointments/index.php">Appointments</a>
         </li>
         <li>
-          <a href="../vaccination.php">Vaccination</a>
+          <a href="../vaccination/index.php">Vaccination</a>
         </li>
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">Admin</div>
+        <a href="../logout.php" class="btn-logout" title="Logout">
+          <i class='bx bx-log-out'></i>
+        </a>
       </header>
 
       <main>
@@ -72,45 +74,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <h1>Add New Client</h1>
         </div>
 
-        <!-- Client Form -->
+
         <div class="form-container">
-          <form method="POST" class="crud-form">
-            <div class="form-group">
-              <label>Last Name:</label>
-              <input type="text" name="lname" required>
+          <form method="POST">
+            <div class="crud-form">
+              <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" name="lname" required>
+              </div>
+              <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" name="fname" required>
+              </div>
+              <div class="form-group">
+                <label>Middle Initial:</label>
+                <input type="text" name="middle" maxlength="1">
+              </div>
+              <div class="form-group">
+                <label>Address:</label>
+                <textarea name="address" required></textarea>
+              </div>
+              <div class="form-group">
+                <label>Contact Number:</label>
+                <input type="text" name="contact_no" maxlength="11" required>
+              </div>
+              <div class="form-group">
+                <label>Number of Pets:</label>
+                <input type="number" name="no_of_pets" required>
+              </div>
+              <div class="form-group">
+                <label>Pet Type:</label>
+                <input type="text" name="pet_type" required>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label>First Name:</label>
-              <input type="text" name="fname" required>
-            </div>
-
-            <div class="form-group">
-              <label>Middle Initial:</label>
-              <input type="text" name="middle" maxlength="1">
-            </div>
-
-            <div class="form-group">
-              <label>Address:</label>
-              <textarea name="address" required></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Contact Number:</label>
-              <input type="text" name="contact_no" maxlength="11" required>
-            </div>
-
-            <div class="form-group">
-              <label>Number of Pets:</label>
-              <input type="number" name="no_of_pets" required>
-            </div>
-
-            <div class="form-group">
-              <label>Pet Type:</label>
-              <input type="text" name="pet_type" required>
-            </div>
-
-            <div class="form-actions">
+            <div class="form-actions span-form">
               <button type="submit" class="btn-submit">Add Client</button>
               <a href="index.php" class="btn-cancel">Cancel</a>
             </div>

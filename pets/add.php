@@ -1,6 +1,6 @@
 <?php
 require_once '../config/database.php';
-
+require_once '../config/auth.php';
 // Handle Create
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pet_type = $_POST['pet_type'];
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li>
-          <a href="../vaccination.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
@@ -93,56 +93,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <h1>Add New Pet</h1>
         </div>
 
-        <!-- Pet Form -->
+
         <div class="form-container">
-          <form method="POST" class="crud-form">
-            <div class="form-group">
-              <label>Pet Name:</label>
-              <input type="text" name="pet_name" required>
-            </div>
-
-            <div class="form-group">
-              <label>Pet Type:</label>
-              <input type="text" name="pet_type" required>
-            </div>
-
-            <div class="form-group">
-              <label>Breed:</label>
-              <input type="text" name="pet_breed" required>
-            </div>
-
-            <div class="form-group">
-              <label>Gender:</label>
-              <select name="pet_gender" required>
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Color:</label>
-              <input type="text" name="pet_color" required>
-            </div>
-
-            <div class="form-group">
-              <label>Date of Birth:</label>
-              <input type="date" name="dob" required>
-            </div>
-
-            <div class="form-group">
-              <label>Age:</label>
-              <input type="text" name="age" required>
-            </div>
-
-            <div class="form-group">
-              <label>Weight:</label>
-              <input type="text" name="weight" required>
-            </div>
-
-            <div class="form-group">
-              <label>Medical History:</label>
-              <textarea name="med_history"></textarea>
+          <form method="POST">
+            <div class="crud-form">
+              <div class="form-group">
+                <label>Pet Name:</label>
+                <input type="text" name="pet_name" required>
+              </div>
+              <div class="form-group">
+                <label>Pet Type:</label>
+                <input type="text" name="pet_type" required>
+              </div>
+              <div class="form-group">
+                <label>Breed:</label>
+                <input type="text" name="pet_breed" required>
+              </div>
+              <div class="form-group">
+                <label>Gender:</label>
+                <select name="pet_gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Color:</label>
+                <input type="text" name="pet_color" required>
+              </div>
+              <div class="form-group">
+                <label>Date of Birth:</label>
+                <input type="date" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label>Age:</label>
+                <input type="text" name="age" required>
+              </div>
+              <div class="form-group">
+                <label>Weight:</label>
+                <input type="text" name="weight" required>
+              </div>
+              <div class="form-group">
+                <label>Medical History:</label>
+                <textarea name="med_history"></textarea>
+              </div>
             </div>
 
             <div class="form-actions">

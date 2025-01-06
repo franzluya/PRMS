@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get vaccination for editing
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 $result = $mysqli->query("SELECT v.*, p.pet_type, p.pet_breed, p.age, p.weight, p.med_history 
     FROM vaccination_info v 
@@ -14,7 +14,7 @@ if (!$vaccination) {
   exit();
 }
 
-// Get clients and pets for dropdowns
+
 $clients = $mysqli->query("SELECT id, CONCAT(fname, ' ', lname) as name FROM client_info ORDER BY lname, fname");
 $pets = $mysqli->query("SELECT id, pet_name, pet_type, pet_breed, age, weight, med_history FROM pet_info ORDER BY pet_name");
 
@@ -51,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Vaccination - Animals at Home</title>
+  <title>Update Vaccination - Animals at Home</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li class="active">
-          <a href="index.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">
@@ -112,10 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       <main>
         <div class="content-header">
-          <h1>Edit Vaccination Record</h1>
+          <h1>Update Vaccination Record</h1>
         </div>
 
-        <!-- Pet Details Card -->
         <div class="form-container" style="margin-bottom: 20px;">
           <h2>Current Pet Details</h2>
           <div class="pet-details" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">

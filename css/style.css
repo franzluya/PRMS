@@ -5,7 +5,7 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: Helvetica, sans-serif;
 	line-height: 1.6;
 	background: #f4f4f4;
 }
@@ -15,7 +15,6 @@ body {
 	min-height: 100vh;
 }
 
-/* Sidebar */
 #sidebar {
 	width: 250px;
 	background: #333;
@@ -32,7 +31,7 @@ body {
 .logo {
 	width: 80px;
 	margin-bottom: 10px;
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 .clinic-info h3 {
@@ -73,13 +72,11 @@ body {
 	background: #444;
 }
 
-/* Content */
 #content {
 	flex: 1;
 	background: #f4f4f4;
 }
 
-/* Header */
 header {
 	background: #fff;
 	padding: 15px 20px;
@@ -89,28 +86,46 @@ header {
 }
 
 .user-menu {
-	font-size: 14px;
 	display: flex;
 	align-items: center;
-	gap: 5px;
+	gap: 0.75rem;
+	color: #374151;
 }
 
 .user-menu i {
-	font-size: 18px;
+	font-size: 1.25rem;
 }
 
-/* Main Content */
+.user-menu span {
+	font-size: 0.95rem;
+	font-weight: 500;
+}
+
+.btn-logout {
+	color: #dc2626;
+	padding: 0.5rem;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.btn-logout:hover {
+	background-color: #fee2e2;
+}
+
 main {
 	padding: 20px;
 }
 
-/* Welcome Section */
 .welcome-section {
 	background: #fff;
-	padding: 30px;
+	padding: 64px 32px;
 	text-align: center;
 	margin-bottom: 30px;
-	border: 1px solid #ddd;
+	border: 2px solid #ddd;
+	border-radius: 8px;
 }
 
 .welcome-section h1 {
@@ -144,7 +159,6 @@ main {
 	color: #333;
 }
 
-/* Stats Grid */
 .stats-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -177,7 +191,6 @@ main {
 	font-size: 14px;
 }
 
-/* Quick Actions */
 .quick-actions {
 	background: #fff;
 	padding: 20px;
@@ -216,7 +229,6 @@ main {
 	margin-right: 10px;
 }
 
-/* Content Header */
 .content-header {
 	display: flex;
 	justify-content: space-between;
@@ -229,7 +241,6 @@ main {
 	color: #333;
 }
 
-/* Search Container */
 .search-container {
 	background: #fff;
 	padding: 15px;
@@ -249,7 +260,6 @@ main {
 	font-size: 14px;
 }
 
-/* Buttons */
 .btn-add,
 .btn-search,
 .btn-clear,
@@ -319,19 +329,21 @@ th {
 	font-weight: bold;
 }
 
-/* Form Styles */
 .form-container {
-  
 	background: #fff;
 	padding: 20px;
-	border: 1px solid #ddd;
+	border: 2px solid rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+}
+
+.form-container form {
+	padding: 8px 16px;
 }
 
 .crud-form {
-  display: grid;
+	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 2rem;
-	max-width: 600px;
 }
 
 .form-group {
@@ -346,10 +358,12 @@ th {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
 	width: 100%;
 	padding: 8px;
-	border: 1px solid #ddd;
+	border: 2px solid #ddd;
+	border-radius: 8px;
 	font-size: 14px;
 }
 
@@ -367,6 +381,7 @@ th {
 .actions {
 	display: flex;
 	gap: 10px;
+	height: 100%;
 }
 
 .btn-edit,
@@ -374,7 +389,7 @@ th {
 	padding: 5px 10px;
 	text-decoration: none;
 	color: #fff;
-	border-radius: 3px;
+	border-radius: 6px;
 	font-size: 12px;
 	display: flex;
 	align-items: center;
@@ -399,8 +414,6 @@ th {
 	padding: 20px;
 	color: #666;
 }
-
-
 
 .form-column {
 	display: flex;

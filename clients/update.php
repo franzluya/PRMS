@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get client for editing
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 $result = $mysqli->query("SELECT * FROM client_info WHERE id = $id");
 $client = $result->fetch_assoc();
@@ -42,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Client - Animals at Home</title>
+  <title>Update Client - Animals at Home</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -71,12 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <a href="../appointments/index.php">Appointments</a>
         </li>
         <li>
-          <a href="../vaccination.php">Vaccination</a>
+          <a href=".../vaccination/index.php">Vaccination</a>
         </li>
       </ul>
     </nav>
 
-    <!-- Page Content -->
+
     <div id="content">
       <header>
         <div class="user-menu">Admin</div>
@@ -84,45 +84,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       <main>
         <div class="content-header">
-          <h1>Edit Client</h1>
+          <h1>Update Client</h1>
         </div>
 
-        <!-- Client Form -->
+
         <div class="form-container">
-          <form method="POST" class="crud-form">
-            <div class="form-group">
-              <label>Last Name:</label>
-              <input type="text" name="lname" value="<?php echo $client['lname']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>First Name:</label>
-              <input type="text" name="fname" value="<?php echo $client['fname']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Middle Initial:</label>
-              <input type="text" name="middle" maxlength="1" value="<?php echo $client['middle']; ?>">
-            </div>
-
-            <div class="form-group">
-              <label>Address:</label>
-              <textarea name="address" required><?php echo $client['address']; ?></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Contact Number:</label>
-              <input type="text" name="contact_no" maxlength="11" value="<?php echo $client['contact_no']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Number of Pets:</label>
-              <input type="number" name="no_of_pets" value="<?php echo $client['no_of_pets']; ?>" required>
-            </div>
-
-            <div class="form-group">
-              <label>Pet Type:</label>
-              <input type="text" name="pet_type" value="<?php echo $client['pet_type']; ?>" required>
+          <form method="POST">
+            <div class="crud-form">
+              <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" name="lname" value="<?php echo $client['lname']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" name="fname" value="<?php echo $client['fname']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Middle Initial:</label>
+                <input type="text" name="middle" maxlength="1" value="<?php echo $client['middle']; ?>">
+              </div>
+              <div class="form-group">
+                <label>Address:</label>
+                <textarea name="address" required><?php echo $client['address']; ?></textarea>
+              </div>
+              <div class="form-group">
+                <label>Contact Number:</label>
+                <input type="text" name="contact_no" maxlength="11" value="<?php echo $client['contact_no']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Number of Pets:</label>
+                <input type="number" name="no_of_pets" value="<?php echo $client['no_of_pets']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label>Pet Type:</label>
+                <input type="text" name="pet_type" value="<?php echo $client['pet_type']; ?>" required>
+              </div>
             </div>
 
             <div class="form-actions">

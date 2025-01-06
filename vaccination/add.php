@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
+require_once '../config/auth.php';
 
-// Get clients and pets for dropdowns
 $clients = $mysqli->query("SELECT id, CONCAT(fname, ' ', lname) as name FROM client_info ORDER BY lname, fname");
 $pets = $mysqli->query("SELECT id, pet_name, pet_type, pet_breed, age, weight, med_history FROM pet_info ORDER BY pet_name");
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
+    
     <nav id="sidebar">
       <div class="sidebar-header">
         <img src="../images/aah-logo.jpg" alt="Clinic Logo" class="logo">
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li class="active">
-          <a href="index.php">
+          <a href="../vaccination/index.php">
             <i class='bx bx-injection'></i>
             <span>Vaccination</span>
           </a>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </ul>
     </nav>
 
-    <!-- Page Content -->
+   
     <div id="content">
       <header>
         <div class="user-menu">
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <h1>Record New Vaccination</h1>
         </div>
 
-        <!-- Vaccination Form -->
+       
         <div class="form-container">
           <form method="POST" class="crud-form two-columns">
             <div class="form-column">

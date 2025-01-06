@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2025 at 01:24 PM
+-- Generation Time: Jan 06, 2025 at 11:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `admin` (
   `password` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `lname`, `fname`, `username`, `password`) VALUES
+(1, 'Admin', 'Animals at Home', 'admin', 'admin123');
+
 -- --------------------------------------------------------
 
 --
@@ -57,8 +64,7 @@ CREATE TABLE `checkup_test` (
 --
 
 INSERT INTO `checkup_test` (`id`, `clientid`, `petid`, `appointment_date`, `reason`, `notes`, `status`, `created_at`) VALUES
-(5, 2, 2, '1977-09-01 00:25:00', 'Dolore impedit pari', 'Culpa quas et ipsa', 'Scheduled', '2025-01-03 07:58:11'),
-(6, 3, 2, '1969-06-10 07:08:00', 'Ea nulla nostrum lab', 'Dignissimos accusamu', 'Cancelled', '2025-01-03 08:13:08');
+(9, 6, 5, '2025-01-07 23:16:00', 'May putok', 'ewan', 'Confirmed', '2025-01-06 03:16:31');
 
 -- --------------------------------------------------------
 
@@ -83,8 +89,7 @@ CREATE TABLE `client_info` (
 --
 
 INSERT INTO `client_info` (`id`, `lname`, `fname`, `middle`, `address`, `contact_no`, `no_of_pets`, `pet_type`, `reg_date`) VALUES
-(2, 'Halee Long', 'Emmanuel Porter', 'R', '70 West Rocky Nobel Boulevard', 'Sed in quis', '79', 'Veniam vel dolore i', '2025-01-03 15:14:41'),
-(3, 'Jemima Jones', 'Alden Avery', 'E', '58 Green Hague Boulevard', 'Quae except', '14', 'Et sit dignissimos p', '2025-01-03 16:09:17');
+(6, 'Ditucalan', 'Khristel', 'M', 'Cahilan Lemery Batangas', '09876543213', '13', 'Dog and Cat', '2025-01-06 11:14:36');
 
 -- --------------------------------------------------------
 
@@ -111,8 +116,7 @@ CREATE TABLE `pet_info` (
 --
 
 INSERT INTO `pet_info` (`id`, `pet_type`, `pet_breed`, `pet_name`, `pet_gender`, `pet_color`, `dob`, `age`, `weight`, `med_history`, `reg_date`) VALUES
-(2, 'Quia unde non adipis', 'Consequatur Laborio', 'Omar Stokes', 'Female', 'Mollitia praesentium', '2011-09-16 00:00:00', 'Ipsam corporis et en', 'Reprehenderit odio r', 'Enim fuga Fugiat do', '2025-01-03 15:52:48'),
-(3, 'Quis elit placeat ', 'Qui veniam quaerat ', 'Raya Walker', 'Male', 'Ea excepturi harum n', '1970-01-12 00:00:00', 'Soluta eligendi quos', 'Sit asperiores enim ', 'Nostrum hic aliquid ', '2025-01-03 16:09:26');
+(5, 'Dog', 'Aspinoy', 'Chua', 'Female', 'Blackpink', '2025-01-15 00:00:00', '32', '33', 'Garapata', '2025-01-06 11:15:41');
 
 -- --------------------------------------------------------
 
@@ -137,7 +141,7 @@ CREATE TABLE `vaccination_info` (
 --
 
 INSERT INTO `vaccination_info` (`id`, `clientid`, `petid`, `vaccination_date`, `vaccine_type`, `vaccine_brand`, `next_vaccination_date`, `notes`, `status`) VALUES
-(1, 2, 2, '2003-04-03', 'Aute velit magnam re', 'Cillum omnis aliquam', '1975-03-29', 'Cupidatat molestias ', 'Cancelled');
+(3, 6, 5, '2025-01-05', 'anti rabies', 'tobleron', '2025-01-10', 'bahal;la ka na', 'Scheduled');
 
 --
 -- Indexes for dumped tables
@@ -185,31 +189,31 @@ ALTER TABLE `vaccination_info`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `checkup_test`
 --
 ALTER TABLE `checkup_test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `client_info`
 --
 ALTER TABLE `client_info`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pet_info`
 --
 ALTER TABLE `pet_info`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vaccination_info`
 --
 ALTER TABLE `vaccination_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
